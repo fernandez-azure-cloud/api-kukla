@@ -45,7 +45,8 @@ jobs:
           name: app-build
           path: dist/
 
-  deploy:
+  deploy-dev:
+    environment: dev
     runs-on: ubuntu-latest
     needs: build-and-test
     steps:
