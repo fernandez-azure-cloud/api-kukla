@@ -62,7 +62,7 @@ jobs:
      
       - name: Verify Azure Authentication
         run: |
-          echo "Listing Azure resources..."
+          echo "Listing Azure resources 1..."
           az account show
 
     #   # Desplegar en App Service
