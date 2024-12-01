@@ -59,10 +59,11 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
+          auth-type: federatedCredential
      
       - name: Verify Azure Authentication
         run: |
-          echo "Listing Azure resources 1..."
+          echo "Listing Azure resources 2..."
           az account show
 
     #   # Desplegar en App Service
