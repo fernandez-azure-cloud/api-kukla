@@ -46,7 +46,7 @@ jobs:
           path: dist/
 
   deploy-dev:
-    environment: dev
+    environment: DEVELOPMENT
     runs-on: ubuntu-latest
     needs: build-and-test
     steps:
