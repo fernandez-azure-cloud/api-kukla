@@ -66,7 +66,7 @@ jobs:
         #   client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
         #   auth-type: federatedCredential
      
-      - name: 'Run Azure CLI commands 1'
+      - name: 'Run Azure CLI commands 2'
         run: |
             az account show
             az group list
