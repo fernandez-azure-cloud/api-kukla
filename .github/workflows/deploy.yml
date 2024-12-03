@@ -68,7 +68,7 @@ jobs:
         run: |
             az account show
             az group list
-   
+
       # Recuperar secretos del Key Vault
       - name: Retrieve secrets for the selected environment
         run: |
