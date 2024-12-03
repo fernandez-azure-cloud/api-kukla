@@ -69,12 +69,11 @@ jobs:
             az account show
             az group list
    
-      - name: Get secrets from Key Vault
-        uses: Azure/get-keyvault-secrets@v1
-        with:
-            keyvault: ${{ secrets.AZURE_KEYVAULT_NAME }}
-            secrets: |
-             CONTAINER-REGISTRY-DEV
+      - name: Retrieve secrets using Azure CLI
+        run: |
+          echo "Fetching secrets from Azure Key Vault..."
+          export CONTAINER_REGISTRY_DEV=$(az keyvault secret show --vault-name ${{ secrets.AZURE_KEYVAULT_NAME }} --name CONTAINER-REGISTRY-DEV --query value -o tsv)
+          echo "CONTAINER_REGISTRY_DEV=$CONTAINER_REGISTRY_DEV" >> $GITHUB_ENV
 
     #   # Desplegar en App Service
     #   - name: Deploy to Azure App Service
