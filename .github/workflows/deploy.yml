@@ -79,7 +79,7 @@ jobs:
       - name: Use secrets
         run: |
           echo "Using retrieved secrets"
-          echo "SECRET_API_KEY: $CONTAINER-REGISTRY-DEV" 
+          echo "SECRET_API_KEY: $CONTAINER-REGISTRY-DEV"
 
       
     #   # Desplegar en App Service
