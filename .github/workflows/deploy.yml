@@ -63,38 +63,19 @@ jobs:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-        #   client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
-        #   auth-type: federatedCredential
-     
+
       - name: 'Run Azure CLI commands 6'
         run: |
             az account show
             az group list
-    
-    #   - name: Retrieve secrets from Key Vault
-    #     run: |
-    #       # Comando para obtener secretos del Key Vault
-    #       SECRET_VALUE=$(az keyvault secret show \
-    #         --name CONTAINER-REGISTRY-DEV \
-    #         --vault-name ${{ secrets.AZURE_KEYVAULT_NAME }} \
-    #         --query value \
-    #         -o tsv)
-    #       echo "::add-mask::$SECRET_VALUE"
-    #       echo "REGISTRY_SECRET=$SECRET_VALUE" >> $GITHUB_ENV
-    
-    #   - name: Use retrieved secrets
-    #     run: |
-    #       echo "Using secrets from Azure Key Vault"
-    #       echo "API Key: $CONTAINER-REGISTRY-DEV"
-
+   
       - name: Get secrets from Key Vault
-        uses: Azure/get-keyvault-secrets@v1
+        uses: Azure/get-keyvault-secrets@v2
         with:
           keyvault: ${{ secrets.AZURE_KEYVAULT_NAME }}
           secrets: |
             CONTAINER-REGISTRY-DEV
 
-      # Use the secrets
       - name: Use secrets
         run: |
           echo "Using retrieved secrets"
