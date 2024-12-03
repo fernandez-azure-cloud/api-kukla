@@ -70,10 +70,13 @@ jobs:
             az group list
 
       # Recuperar secretos del Key Vault
-      - name: List secrets in Key Vault
+      - name: Retrieve secrets from Key Vault
         run: |
-            echo "Listing all secrets in Key Vault..."
-            az keyvault secret list --vault-name ${{ secrets.AZURE_KEYVAULT_NAME }} --query "[].name" -o table
+            echo "Fetching secrets for environment: ${{ github.event.inputs.environment }}"
+            export AZURE_RESOURCE_GROUP=$(az keyvault secret show --vault-name ${{ secrets.AZURE_KEYVAULT_NAME }} --name RESOURCE-GROUP-${{ github.event.inputs.environment }} --query value -o tsv)
+            export AZURE_APP_SERVICE_NAME=$(az keyvault secret show --vault-name ${{ secrets.AZURE_KEYVAULT_NAME }} --name APP-SERVICE-NAME-${{ github.event.inputs.environment }} --query value -o tsv)
+            echo "AZURE_RESOURCE_GROUP=$AZURE_RESOURCE_GROUP" >> $GITHUB_ENV
+            echo "AZURE_APP_SERVICE_NAME=$AZURE_APP_SERVICE_NAME" >> $GITHUB_ENV
 
     #   # Desplegar en App Service
     #   - name: Deploy to Azure App Service
