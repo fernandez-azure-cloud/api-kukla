@@ -64,9 +64,11 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-      - name: List Secrets from Key Vault
+      - name: List Key Vault Secrets with More Details
         run: |
-            az keyvault secret list --vault-name <key-vault-name> --query "[].id" -o table
+          az keyvault secret list \
+          --vault-name ${{ secrets.AZURE_KEYVAULT_NAME }} \
+          --query "[].{name:name, contentType:contentType}" -o table
 
       # Recuperar secretos del Key Vault
       - name: Retrieve secrets from Key Vault
