@@ -77,9 +77,12 @@ jobs:
              CONTAINER-REGISTRY-DEV
 
       - name: Use secrets
+        env:
+            # Usa la nueva forma de acceder a las salidas
+            SECRET_CONTAINER_REGISTRY_DEV: ${{ steps.get-secrets.outputs.CONTAINER-REGISTRY-DEV }}
         run: |
-          echo "Using retrieved secrets"
-          echo "SECRET_API_KEY: $CONTAINER-REGISTRY-DEV"
+            echo "Using retrieved secrets"
+            echo "SECRET_API_KEY: $SECRET_CONTAINER_REGISTRY_DEV"
 
       
     #   # Desplegar en App Service
