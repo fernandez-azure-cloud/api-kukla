@@ -72,9 +72,9 @@ jobs:
       - name: Get secrets from Key Vault
         uses: Azure/get-keyvault-secrets@v2
         with:
-          keyvault: ${{ secrets.AZURE_KEYVAULT_NAME }}
-          secrets: |
-            CONTAINER-REGISTRY-DEV
+            keyvault: ${{ secrets.AZURE_KEYVAULT_NAME }}
+            secrets: |
+             CONTAINER-REGISTRY-DEV
 
       - name: Use secrets
         run: |
