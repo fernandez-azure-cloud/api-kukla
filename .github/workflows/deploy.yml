@@ -76,12 +76,6 @@ jobs:
             secrets: |
              CONTAINER-REGISTRY-DEV
 
-      - name: Use secrets
-        run: |
-            echo "Using retrieved secrets"
-            echo "CONTAINER-REGISTRY-DEV=${{ secrets.CONTAINER-REGISTRY-DEV }}" >> "$GITHUB_ENV"
-
-      
     #   # Desplegar en App Service
     #   - name: Deploy to Azure App Service
     #     uses: azure/webapps-deploy@v2
