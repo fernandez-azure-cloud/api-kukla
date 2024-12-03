@@ -71,21 +71,36 @@ jobs:
             az account show
             az group list
     
-      - name: Retrieve secrets from Key Vault
-        run: |
-          # Comando para obtener secretos del Key Vault
-          SECRET_VALUE=$(az keyvault secret show \
-            --name CONTAINER-REGISTRY-DEV \
-            --vault-name ${{ secrets.AZURE_KEYVAULT_NAME }} \
-            --query value \
-            -o tsv)
-          echo "::add-mask::$SECRET_VALUE"
-          echo "REGISTRY_SECRET=$SECRET_VALUE" >> $GITHUB_ENV
+    #   - name: Retrieve secrets from Key Vault
+    #     run: |
+    #       # Comando para obtener secretos del Key Vault
+    #       SECRET_VALUE=$(az keyvault secret show \
+    #         --name CONTAINER-REGISTRY-DEV \
+    #         --vault-name ${{ secrets.AZURE_KEYVAULT_NAME }} \
+    #         --query value \
+    #         -o tsv)
+    #       echo "::add-mask::$SECRET_VALUE"
+    #       echo "REGISTRY_SECRET=$SECRET_VALUE" >> $GITHUB_ENV
     
-      - name: Use retrieved secrets
+    #   - name: Use retrieved secrets
+    #     run: |
+    #       echo "Using secrets from Azure Key Vault"
+    #       echo "API Key: $CONTAINER-REGISTRY-DEV"
+
+      - name: Get secrets from Key Vault
+        uses: Azure/get-keyvault-secrets@v1
+        with:
+          keyvault: ${{ secrets.AZURE_KEYVAULT_NAME }}
+          secrets: |
+            SECRET_API_KEY
+            DATABASE_PASSWORD
+
+      # Use the secrets
+      - name: Use secrets
         run: |
-          echo "Using secrets from Azure Key Vault"
-          echo "API Key: $CONTAINER-REGISTRY-DEV"
+          echo "Using retrieved secrets"
+          echo "SECRET_API_KEY: $SECRET_API_KEY"
+          echo "DATABASE_PASSWORD: $DATABASE_PASSWORD"
 
       
     #   # Desplegar en App Service
