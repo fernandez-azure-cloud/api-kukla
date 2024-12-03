@@ -70,7 +70,7 @@ jobs:
             az group list
    
       - name: Get secrets from Key Vault
-        uses: Azure/get-keyvault-secrets@v2
+        uses: Azure/get-keyvault-secrets@v1
         with:
             keyvault: ${{ secrets.AZURE_KEYVAULT_NAME }}
             secrets: |
