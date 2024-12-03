@@ -92,15 +92,13 @@ jobs:
         with:
           keyvault: ${{ secrets.AZURE_KEYVAULT_NAME }}
           secrets: |
-            SECRET_API_KEY
-            DATABASE_PASSWORD
+            CONTAINER-REGISTRY-DEV
 
       # Use the secrets
       - name: Use secrets
         run: |
           echo "Using retrieved secrets"
-          echo "SECRET_API_KEY: $SECRET_API_KEY"
-          echo "DATABASE_PASSWORD: $DATABASE_PASSWORD"
+          echo "SECRET_API_KEY: $CONTAINER-REGISTRY-DEV"
 
       
     #   # Desplegar en App Service
