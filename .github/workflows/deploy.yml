@@ -71,8 +71,14 @@ jobs:
             az account show
             az group list
     
-     
+      - name: 'Retrive secret from Key Vault'
+        uses: azure/secrets@v1
+        with:
+          keyvault: ${{ secrets.AZURE_KEYVAULT_NAME }}
+          secrets: |
+            CONTAINER-REGISTRY-DEV
 
+      
     #   # Desplegar en App Service
     #   - name: Deploy to Azure App Service
     #     uses: azure/webapps-deploy@v2
