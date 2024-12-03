@@ -81,6 +81,11 @@ jobs:
             -o tsv)
           echo "::add-mask::$SECRET_VALUE"
           echo "REGISTRY_SECRET=$SECRET_VALUE" >> $GITHUB_ENV
+    
+      - name: Use retrieved secrets
+        run: |
+          echo "Using secrets from Azure Key Vault"
+          echo "API Key: $CONTAINER-REGISTRY-DEV"
 
       
     #   # Desplegar en App Service
