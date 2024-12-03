@@ -63,13 +63,24 @@ jobs:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-        #   client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
-        #   auth-type: federatedCredential
+
      
       - name: 'Run Azure CLI commands 4'
         run: |
             az account show
             az group list
+    
+      - name: Retrieve secrets from Key Vault
+        uses: azure/secrets@v1
+        with:
+          keyvault: ${{ secrets.AZURE_KEYVAULT_NAME }}
+          secrets: |
+            CONTAINER-REGISTRY-DEV
+
+      - name: Use retrieved secrets
+        run: |
+          echo "Using secrets from Azure Key Vault"
+          echo "API Key: $CONTAINER-REGISTRY-DEV"
 
     #   # Desplegar en App Service
     #   - name: Deploy to Azure App Service
