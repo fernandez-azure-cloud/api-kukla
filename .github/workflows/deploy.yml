@@ -77,7 +77,7 @@ jobs:
             export AZURE_RESOURCE_GROUP=$(az keyvault secret show --vault-name ${{ secrets.AZURE_KEYVAULT_NAME }} --name RESOURCE-GROUP-${{ github.event.inputs.environment }} --query value -o tsv)
             export AZURE_APP_SERVICE_NAME=$(az keyvault secret show --vault-name ${{ secrets.AZURE_KEYVAULT_NAME }} --name APP-SERVICE-NAME-${{ github.event.inputs.environment }} --query value -o tsv)
             echo "AZURE_RESOURCE_GROUP=$AZURE_RESOURCE_GROUP" >> $GITHUB_ENV
-            echo "AZURE_APP_SERVICE_NAME=$AZURE_APP_SERVICE_NAME" >> $GITHUB_ENV
+            echo "AZURE_APP_SERVICE_NAME=$AZURE_APP_SERVICE_NAME :rocket:" >> $GITHUB_ENV
 
     #   # Desplegar en App Service
     #   - name: Deploy to Azure App Service
