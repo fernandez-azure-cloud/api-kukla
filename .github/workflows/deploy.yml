@@ -79,7 +79,7 @@ jobs:
       - name: Use secrets
         run: |
             echo "Using retrieved secrets"
-            echo "CONTAINER-REGISTRY-DEV=${{ secrets.CONTAINER-REGISTRY-DEV }}" >> "$GITHUB_ENV"
+            echo "CONTAINER-REGISTRY-DEV=${{ secrets.CONTAINER-REGISTRY-DEV }}" >> $GITHUB_OUTPUT
 
       
     #   # Desplegar en App Service
