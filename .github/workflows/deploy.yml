@@ -71,18 +71,18 @@ jobs:
           --query "[].{name:name, contentType:contentType}" -o table
 
       # Recuperar secretos del Key Vault
-      - name: Get Key Vault Secrets
-        uses: azure/get-keyvault-secrets@v1
-        with:
-          keyvault: ${{ secrets.AZURE_KEYVAULT_NAME }}
-          secrets: |
-            APP-SERVICE-NAME-DEV
-            RESOURCE-GROUP-DEV
+    #   - name: Get Key Vault Secrets
+    #     uses: azure/get-keyvault-secrets@v1
+    #     with:
+    #       keyvault: ${{ secrets.AZURE_KEYVAULT_NAME }}
+    #       secrets: |
+    #         APP-SERVICE-NAME-DEV
+    #         RESOURCE-GROUP-DEV
 
-      - name: Deploy to Azure App Service
-        run: |
-          az webapp up --name $APP-SERVICE-NAME-DEV \
-                       --resource-group $RESOURCE-GROUP-DEV    
+    #   - name: Deploy to Azure App Service
+    #     run: |
+    #       az webapp up --name $APP-SERVICE-NAME-DEV \
+    #                    --resource-group $RESOURCE-GROUP-DEV    
 
       
 
